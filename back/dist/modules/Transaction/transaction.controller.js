@@ -12,41 +12,44 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserController = void 0;
+exports.TransactionController = void 0;
 const common_1 = require("@nestjs/common");
-const user_service_1 = require("./user.service");
 const passport_1 = require("@nestjs/passport");
-let UserController = class UserController {
-    constructor(userService) {
-        this.userService = userService;
+const transaction_service_1 = require("./transaction.service");
+let TransactionController = class TransactionController {
+    constructor(transactionService) {
+        this.transactionService = transactionService;
     }
-    async getAll() {
-        return await this.userService.findAll();
+    async create(req) {
+        return await this.transactionService.create({
+            senderId: req.user.id,
+            recipientId: req.body.recipientId,
+            amount: req.body.amount
+        });
     }
-    async getAllTransaction(req) {
-        const user = await this.userService.findAllUserTransaction(req.user.id);
-        console.log("user", user);
-        return user.transactions;
+    async getAll(req) {
+        return await this.transactionService.findAllUserTransaction(req.user.id);
     }
 };
 __decorate([
     common_1.UseGuards(passport_1.AuthGuard('jwt')),
-    common_1.Get(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], UserController.prototype, "getAll", null);
-__decorate([
-    common_1.UseGuards(passport_1.AuthGuard('jwt')),
-    common_1.Get('/transaction'),
+    common_1.Post(),
     __param(0, common_1.Request()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], UserController.prototype, "getAllTransaction", null);
-UserController = __decorate([
-    common_1.Controller('user'),
-    __metadata("design:paramtypes", [user_service_1.UserService])
-], UserController);
-exports.UserController = UserController;
-//# sourceMappingURL=user.controller.js.map
+], TransactionController.prototype, "create", null);
+__decorate([
+    common_1.UseGuards(passport_1.AuthGuard('jwt')),
+    common_1.Get(),
+    __param(0, common_1.Request()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], TransactionController.prototype, "getAll", null);
+TransactionController = __decorate([
+    common_1.Controller('transaction'),
+    __metadata("design:paramtypes", [transaction_service_1.TransactionService])
+], TransactionController);
+exports.TransactionController = TransactionController;
+//# sourceMappingURL=transaction.controller.js.map

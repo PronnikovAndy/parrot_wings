@@ -12,10 +12,11 @@ const config_1 = require("@nestjs/config");
 const typeorm_1 = require("@nestjs/typeorm");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-const auth_controller_1 = require("./modules/Auth/auth.controller");
 const user_entity_1 = require("./modules/User/user.entity");
 const auth_module_1 = require("./modules/Auth/auth.module");
 const user_module_1 = require("./modules/User/user.module");
+const transaction_entity_1 = require("./modules/Transaction/transaction.entity");
+const transaction_module_1 = require("./modules/Transaction/transaction.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -23,6 +24,7 @@ AppModule = __decorate([
         imports: [
             auth_module_1.AuthModule,
             user_module_1.UserModule,
+            transaction_module_1.TransactionModule,
             config_1.ConfigModule.forRoot({
                 envFilePath: '.env.local'
             }),
@@ -33,11 +35,11 @@ AppModule = __decorate([
                 username: process.env.DATABASE_USER,
                 password: process.env.DATABASE_PASSWORD,
                 database: process.env.DATABASE_NAME,
-                entities: [user_entity_1.User],
+                entities: [user_entity_1.User, transaction_entity_1.Transaction],
                 synchronize: true
             })
         ],
-        controllers: [app_controller_1.AppController, auth_controller_1.AuthController],
+        controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })
 ], AppModule);

@@ -9,49 +9,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = void 0;
+exports.Transaction = void 0;
 const typeorm_1 = require("typeorm");
-const transaction_entity_1 = require("../Transaction/transaction.entity");
-let User = class User {
+const user_entity_1 = require("../User/user.entity");
+let Transaction = class Transaction {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn('uuid'),
     __metadata("design:type", String)
-], User.prototype, "id", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", String)
-], User.prototype, "fullName", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", String)
-], User.prototype, "email", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", String)
-], User.prototype, "password", void 0);
+], Transaction.prototype, "id", void 0);
 __decorate([
     typeorm_1.Column(),
     __metadata("design:type", Number)
-], User.prototype, "balance", void 0);
+], Transaction.prototype, "amount", void 0);
 __decorate([
-    typeorm_1.ManyToOne(() => transaction_entity_1.Transaction, transaction => transaction.users),
+    typeorm_1.ManyToMany(() => user_entity_1.User, user => user.transactions, {
+        cascade: true
+    }),
+    typeorm_1.JoinTable(),
     __metadata("design:type", Array)
-], User.prototype, "transactions", void 0);
+], Transaction.prototype, "users", void 0);
 __decorate([
     typeorm_1.CreateDateColumn(),
     __metadata("design:type", Date)
-], User.prototype, "createdAt", void 0);
+], Transaction.prototype, "createdAt", void 0);
 __decorate([
     typeorm_1.UpdateDateColumn(),
     __metadata("design:type", Date)
-], User.prototype, "updatedAt", void 0);
+], Transaction.prototype, "updatedAt", void 0);
 __decorate([
     typeorm_1.DeleteDateColumn(),
     __metadata("design:type", Date)
-], User.prototype, "deletedAt", void 0);
-User = __decorate([
+], Transaction.prototype, "deletedAt", void 0);
+Transaction = __decorate([
     typeorm_1.Entity()
-], User);
-exports.User = User;
-//# sourceMappingURL=user.entity.js.map
+], Transaction);
+exports.Transaction = Transaction;
+//# sourceMappingURL=transaction.entity.js.map

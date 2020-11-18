@@ -2591,14 +2591,19 @@
         "signature": "3201f4dc7065dd5518abde706fe8df38bdaa56662fd866fb345a5f016a94ccc6",
         "affectsGlobalScope": false
       },
+      "../src/modules/Transaction/transaction.entity.ts": {
+        "version": "54af73269348cd7fa4b45c950f742def1295a3f139cd55c3424bfc21b169d6d7",
+        "signature": "037a583aff07aa96dd85164d3ae060b6dceecc90d5663099aaad9229edc813b3",
+        "affectsGlobalScope": false
+      },
       "../src/modules/User/user.entity.ts": {
-        "version": "473864938e6b10c064a3c297c403a281bacaed0514480dfe38d911086c1452b7",
-        "signature": "c34e79e5078d0d1eb8896f25594439111a423f45fbeda8883eca9dc4d7c3e1e1",
+        "version": "6f8fa021c57248b0efaa301fdd60c55e60a03753640deb661c1a0aa57e69d646",
+        "signature": "d570ae55ae7a593b47dafed8afc3471927fc1f0fe8b2500ff09b9bfe51d0e77f",
         "affectsGlobalScope": false
       },
       "../src/modules/User/user.service.ts": {
-        "version": "5d9f4f48e664db3ba0246da84698caa2d59884869ec66f07a17e76fb53493373",
-        "signature": "1514b973ab4c0ba7e57268d3776cabbfb62f08e1cf12a057c059eb55ea3775af",
+        "version": "894f898ccc30c7ed3ba4119330899a40352a34df29ed6f5ac5f9f3db9074fec2",
+        "signature": "ec2317abc8ce469249e9cc550603d0c1d93d3b718dd5bc43a4fce44f8a776246",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/node/globals.d.ts": {
@@ -2873,12 +2878,12 @@
       },
       "../src/modules/Auth/auth.service.ts": {
         "version": "19c9c2aa540a38356519088c6b477eab4537def5d5556b24995e78eb03cf20ff",
-        "signature": "aabaae3f874d28e5c0ffca28f8ed6ca557ac8472c1e96085d137c90d340da0d1",
+        "signature": "3f715f8f5eed74dcccd64de78bf7908b3a5bf0ae6aa2fdb9724985186b7128a0",
         "affectsGlobalScope": false
       },
       "../src/modules/Auth/auth.controller.ts": {
         "version": "913decf4ea2dcb6a7769600fc55c1ec68c439e56509e6099c168ef1ba5699705",
-        "signature": "673e9a1f628053fb5a83126be44fad8dbc2b79f10f3d362e4fd367c0f6b1aabb",
+        "signature": "9c1d977cbdaafa7f7b01c317a07f1cd44b1354e7e4c66689739d53cae47f183e",
         "affectsGlobalScope": false
       },
       "../node_modules/@nestjs/passport/dist/abstract.strategy.d.ts": {
@@ -2977,8 +2982,8 @@
         "affectsGlobalScope": false
       },
       "../src/modules/User/user.controller.ts": {
-        "version": "cdf28d72f61c381503db4412c79e4a748c1d122518014aa508158bdfdee007aa",
-        "signature": "3d14c44bad5df14f274f8551e2a32aa58d4721968c0c73ac8a8ec923de46f020",
+        "version": "32c1616249e9a3c015a5f1bffab59afdf748b89bda14acc52d71eeb746621df2",
+        "signature": "6af33200ea203a1b69507c28d215e710cf04b03a46ca4a5168958f35688f000b",
         "affectsGlobalScope": false
       },
       "../src/modules/User/user.module.ts": {
@@ -2997,17 +3002,37 @@
         "affectsGlobalScope": false
       },
       "../src/modules/Auth/strategies/jwt.strategy.ts": {
-        "version": "5c1c01fd73e11b56b3eadd47f994b235de238c6c55f2a23e851d0926c6d627b7",
+        "version": "e62dae4908568b6650bbe7ee4cd0a7c2675b5513f8202c01daf76a2a15edcbd0",
         "signature": "3885953017e53559d1d88751c5027fa900a2fdb2252595986cc7545abf248084",
         "affectsGlobalScope": false
       },
       "../src/modules/Auth/auth.module.ts": {
-        "version": "534a4c3fb6d8dba96b06f3c807c7b6907d070d83c07b15f263261a97ef900639",
+        "version": "55671d7ca4210d0836f289018ffa3cdf95386b067563324e4024cd395ced1c8a",
         "signature": "a28b5c0c372fb375910b3fe3c3ce4331509bc18ccef7cc39c9ee9d8daf8225d1",
         "affectsGlobalScope": false
       },
+      "../src/modules/Transaction/dto/transaction.dto.ts": {
+        "version": "668e318aa7f67c802288112b8127d6b260295b846331622d77f99444eeb12ef9",
+        "signature": "78b4369a26c9ae18568dd5b5e52f9f09d62d8376465f28c05935b1f29b3594db",
+        "affectsGlobalScope": false
+      },
+      "../src/modules/Transaction/transaction.service.ts": {
+        "version": "7198c6ad3a28f3ff169cf8a176276118128682930392e4f73372619dc4577f2d",
+        "signature": "0432a84a30609e956ee280839c15a0209ffb0b12e8efa50113006a59b11c1ded",
+        "affectsGlobalScope": false
+      },
+      "../src/modules/Transaction/transaction.controller.ts": {
+        "version": "565423c41a5fe9b185364215eecd9d57b44bab96e884a03a60f8ec48df83acc0",
+        "signature": "d30b22c42580aa48fdb9505f7b887c45b23e3f42981db470e5206f93a97d92bc",
+        "affectsGlobalScope": false
+      },
+      "../src/modules/Transaction/transaction.module.ts": {
+        "version": "e482454a4ebe9d0c1458b7c959b3a1cb27fc2ee7fecee643130d20be640a2415",
+        "signature": "f2da6625feeaeedb55f7fa389074a32670f50fa78189eb9bafd65ac56eb29963",
+        "affectsGlobalScope": false
+      },
       "../src/app.module.ts": {
-        "version": "62a27074757763791b2d02c55a6ddbd68116ec19fbbf83da7b347c77f7083c7a",
+        "version": "fe180e6fc4938973c186b4e02bbe206f0845e3676c1d1483968463eb5e4e2335",
         "signature": "b82491e2990291580288c5602d4c017238977749d52b17391f0e45d9a29be644",
         "affectsGlobalScope": false
       },
@@ -6007,6 +6032,8 @@
         "../src/app.service.ts",
         "../src/modules/Auth/auth.controller.ts",
         "../src/modules/Auth/auth.module.ts",
+        "../src/modules/Transaction/transaction.entity.ts",
+        "../src/modules/Transaction/transaction.module.ts",
         "../src/modules/User/user.entity.ts",
         "../src/modules/User/user.module.ts"
       ],
@@ -6045,14 +6072,44 @@
         "../node_modules/@nestjs/passport/index.d.ts",
         "../node_modules/@types/passport-jwt/index.d.ts"
       ],
+      "../src/modules/Transaction/transaction.controller.ts": [
+        "../node_modules/@nestjs/common/index.d.ts",
+        "../node_modules/@nestjs/passport/index.d.ts",
+        "../src/modules/Transaction/dto/transaction.dto.ts",
+        "../src/modules/Transaction/transaction.entity.ts",
+        "../src/modules/Transaction/transaction.service.ts"
+      ],
+      "../src/modules/Transaction/transaction.entity.ts": [
+        "../node_modules/typeorm/index.d.ts",
+        "../src/modules/User/user.entity.ts"
+      ],
+      "../src/modules/Transaction/transaction.module.ts": [
+        "../node_modules/@nestjs/common/index.d.ts",
+        "../node_modules/@nestjs/typeorm/index.d.ts",
+        "../src/modules/Transaction/transaction.controller.ts",
+        "../src/modules/Transaction/transaction.entity.ts",
+        "../src/modules/Transaction/transaction.service.ts",
+        "../src/modules/User/user.entity.ts",
+        "../src/modules/User/user.service.ts"
+      ],
+      "../src/modules/Transaction/transaction.service.ts": [
+        "../node_modules/@nestjs/common/index.d.ts",
+        "../node_modules/@nestjs/typeorm/index.d.ts",
+        "../node_modules/typeorm/index.d.ts",
+        "../src/modules/Transaction/dto/transaction.dto.ts",
+        "../src/modules/Transaction/transaction.entity.ts",
+        "../src/modules/User/user.service.ts"
+      ],
       "../src/modules/User/user.controller.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
         "../node_modules/@nestjs/passport/index.d.ts",
+        "../src/modules/Transaction/transaction.entity.ts",
         "../src/modules/User/user.entity.ts",
         "../src/modules/User/user.service.ts"
       ],
       "../src/modules/User/user.entity.ts": [
-        "../node_modules/typeorm/index.d.ts"
+        "../node_modules/typeorm/index.d.ts",
+        "../src/modules/Transaction/transaction.entity.ts"
       ],
       "../src/modules/User/user.module.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
@@ -8583,19 +8640,38 @@
       ],
       "../src/modules/Auth/auth.controller.ts": [
         "../src/modules/Auth/auth.service.ts",
-        "../src/modules/Auth/dto/auth.dto.ts"
+        "../src/modules/Auth/dto/auth.dto.ts",
+        "../src/modules/Transaction/transaction.entity.ts"
       ],
       "../src/modules/Auth/auth.service.ts": [
         "../node_modules/@nestjs/jwt/index.d.ts",
         "../src/modules/Auth/dto/auth.dto.ts",
+        "../src/modules/Transaction/transaction.entity.ts",
         "../src/modules/User/user.service.ts"
       ],
       "../src/modules/Auth/strategies/jwt.strategy.ts": [
         "../node_modules/@types/passport-jwt/index.d.ts"
       ],
+      "../src/modules/Transaction/transaction.controller.ts": [
+        "../src/modules/Transaction/transaction.entity.ts",
+        "../src/modules/Transaction/transaction.service.ts"
+      ],
+      "../src/modules/Transaction/transaction.entity.ts": [
+        "../src/modules/User/user.entity.ts"
+      ],
+      "../src/modules/Transaction/transaction.service.ts": [
+        "../node_modules/typeorm/index.d.ts",
+        "../src/modules/Transaction/dto/transaction.dto.ts",
+        "../src/modules/Transaction/transaction.entity.ts",
+        "../src/modules/User/user.service.ts"
+      ],
       "../src/modules/User/user.controller.ts": [
+        "../src/modules/Transaction/transaction.entity.ts",
         "../src/modules/User/user.entity.ts",
         "../src/modules/User/user.service.ts"
+      ],
+      "../src/modules/User/user.entity.ts": [
+        "../src/modules/Transaction/transaction.entity.ts"
       ],
       "../src/modules/User/user.service.ts": [
         "../node_modules/typeorm/index.d.ts",
@@ -9294,6 +9370,11 @@
       "../src/modules/Auth/auth.service.ts",
       "../src/modules/Auth/dto/auth.dto.ts",
       "../src/modules/Auth/strategies/jwt.strategy.ts",
+      "../src/modules/Transaction/dto/transaction.dto.ts",
+      "../src/modules/Transaction/transaction.controller.ts",
+      "../src/modules/Transaction/transaction.entity.ts",
+      "../src/modules/Transaction/transaction.module.ts",
+      "../src/modules/Transaction/transaction.service.ts",
       "../src/modules/User/user.controller.ts",
       "../src/modules/User/user.entity.ts",
       "../src/modules/User/user.module.ts",

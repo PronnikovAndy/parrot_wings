@@ -7,11 +7,14 @@ import {AuthController} from "./modules/Auth/auth.controller";
 import {User} from "./modules/User/user.entity";
 import {AuthModule} from "./modules/Auth/auth.module";
 import {UserModule} from "./modules/User/user.module";
+import {Transaction} from "./modules/Transaction/transaction.entity";
+import {TransactionModule} from "./modules/Transaction/transaction.module";
 
 @Module({
   imports: [
       AuthModule,
       UserModule,
+      TransactionModule,
       ConfigModule.forRoot({
           envFilePath: '.env.local'
       }),
@@ -22,11 +25,11 @@ import {UserModule} from "./modules/User/user.module";
         username: process.env.DATABASE_USER,
         password: process.env.DATABASE_PASSWORD,
         database: process.env.DATABASE_NAME,
-        entities: [User],
+        entities: [User, Transaction],
         synchronize: true
       })
   ],
-  controllers: [AppController, AuthController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}

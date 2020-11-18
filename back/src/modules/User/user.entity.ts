@@ -1,10 +1,20 @@
 
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+    Entity,
+    Column,
+    PrimaryGeneratedColumn,
+    ManyToOne,
+    CreateDateColumn,
+    UpdateDateColumn,
+    DeleteDateColumn,
+    JoinTable
+} from 'typeorm';
+import {Transaction} from "../Transaction/transaction.entity";
 
 @Entity()
 export class User {
-    @PrimaryGeneratedColumn()
-    id: number;
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
 
     @Column()
     fullName: string;
@@ -14,4 +24,19 @@ export class User {
 
     @Column()
     password: string;
+
+    @Column()
+    balance: number;
+
+    @ManyToOne(() => Transaction, transaction => transaction.users)
+    transactions: Transaction[];
+
+    @CreateDateColumn()
+    createdAt: Date;
+
+    @UpdateDateColumn()
+    updatedAt: Date;
+
+    @DeleteDateColumn()
+    deletedAt: Date;
 }

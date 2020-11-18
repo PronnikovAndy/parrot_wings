@@ -18,27 +18,47 @@ const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const user_entity_1 = require("./user.entity");
 let UserService = class UserService {
-    constructor(usersRepository) {
-        this.usersRepository = usersRepository;
+    constructor(userRepository) {
+        this.userRepository = userRepository;
     }
     create(signupDto) {
         const user = new user_entity_1.User();
         user.email = signupDto.email;
         user.fullName = signupDto.fullName;
         user.password = signupDto.password;
-        return this.usersRepository.save(user);
+        user.balance = 500;
+        return this.userRepository.save(user);
     }
     findAll() {
-        return this.usersRepository.find();
+        return this.userRepository.find();
     }
     findOneByEmail(email) {
-        return this.usersRepository.findOne({ email });
+        return this.userRepository.findOne({ email });
     }
     findOne(id) {
-        return this.usersRepository.findOne(id);
+        return this.userRepository.findOne(id);
+    }
+    findAllUserTransaction(id, sort, filter) {
+        const query = this.userRepository
+            .createQueryBuilder('user')
+            .leftJoinAndSelect('user.transactions', 'transaction');
+        if (sort) {
+            query
+                .orderBy(`transactions.${sort.field}`, sort.order);
+        }
+        if (filter) {
+            query
+                .where(`transactions.${filter.field}`, filter.value);
+        }
+        return query.getOne();
+    }
+    async changeBalance(amount, userId, type) {
+        const user = await this.userRepository.findOne(userId);
+        user.balance = type === 'credit' ? user.balance + amount : user.balance - amount;
+        return await this.userRepository.save(user);
     }
     async remove(id) {
-        await this.usersRepository.delete(id);
+        await this.userRepository.delete(id);
     }
 };
 UserService = __decorate([
