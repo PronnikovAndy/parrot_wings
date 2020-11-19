@@ -1,25 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect} from 'react';
+import Menu from './components/Menu';
+import Signin from "./components/Signin";
+import Signup from "./components/Signup";
+import {useDispatch} from "react-redux";
+import {signin} from './Store/Actions';
+import Main from "./components/Main";
 
 function App() {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        const token = localStorage.getItem("access_token");
+        console.log('token', token);
+
+        if(token) {
+            dispatch(signin.success(token));
+        }
+    }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Menu />
+      <Main />
+      <main>
+          <Signin />
+          <Signup />
+      </main>
+    </>
   );
 }
 
