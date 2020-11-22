@@ -16,4 +16,7 @@ export declare class AuthController {
         updatedAt: Date;
         deletedAt: Date;
     }>;
+    logout(): {
+        success: boolean;
+    };
 }

@@ -2592,18 +2592,18 @@
         "affectsGlobalScope": false
       },
       "../src/modules/Transaction/transaction.entity.ts": {
-        "version": "54af73269348cd7fa4b45c950f742def1295a3f139cd55c3424bfc21b169d6d7",
-        "signature": "037a583aff07aa96dd85164d3ae060b6dceecc90d5663099aaad9229edc813b3",
+        "version": "e6dc4c1a5c469f734b0f8f1dea1973d693f76a43bf74ad6c5e096194092db8d7",
+        "signature": "f37b6591d5cae7755613dcffc54ec825844788542d69ad7ea464b7827f1aa28b",
         "affectsGlobalScope": false
       },
       "../src/modules/User/user.entity.ts": {
-        "version": "6f8fa021c57248b0efaa301fdd60c55e60a03753640deb661c1a0aa57e69d646",
+        "version": "8b88ba41f624f385ce7da02e8a22d69252355b157b05c429b0eb5d1d2be1750b",
         "signature": "d570ae55ae7a593b47dafed8afc3471927fc1f0fe8b2500ff09b9bfe51d0e77f",
         "affectsGlobalScope": false
       },
       "../src/modules/User/user.service.ts": {
-        "version": "894f898ccc30c7ed3ba4119330899a40352a34df29ed6f5ac5f9f3db9074fec2",
-        "signature": "ec2317abc8ce469249e9cc550603d0c1d93d3b718dd5bc43a4fce44f8a776246",
+        "version": "e09cdadac487c3420a2e43c7073940882beae23ae30d0359308cc3eddea8e47c",
+        "signature": "dc8a249734835b4a3eab865c83b3031eb844fd268202bc4900fcfdc16280cc88",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/node/globals.d.ts": {
@@ -2877,13 +2877,13 @@
         "affectsGlobalScope": false
       },
       "../src/modules/Auth/auth.service.ts": {
-        "version": "19c9c2aa540a38356519088c6b477eab4537def5d5556b24995e78eb03cf20ff",
+        "version": "d3b316bd3ae1a49b03f8fea995da846974a91141a21bd3cc936cf9377117584d",
         "signature": "3f715f8f5eed74dcccd64de78bf7908b3a5bf0ae6aa2fdb9724985186b7128a0",
         "affectsGlobalScope": false
       },
       "../src/modules/Auth/auth.controller.ts": {
-        "version": "913decf4ea2dcb6a7769600fc55c1ec68c439e56509e6099c168ef1ba5699705",
-        "signature": "9c1d977cbdaafa7f7b01c317a07f1cd44b1354e7e4c66689739d53cae47f183e",
+        "version": "e7c07e4c0bfdd687c764b6dd6efe85a85a84768fb7c7671b2fbfd5af6a58efc0",
+        "signature": "c6db2cf32048a94810333621629ab36d7555bb7032d1e1d8178717bfee86713b",
         "affectsGlobalScope": false
       },
       "../node_modules/@nestjs/passport/dist/abstract.strategy.d.ts": {
@@ -2982,8 +2982,8 @@
         "affectsGlobalScope": false
       },
       "../src/modules/User/user.controller.ts": {
-        "version": "32c1616249e9a3c015a5f1bffab59afdf748b89bda14acc52d71eeb746621df2",
-        "signature": "6af33200ea203a1b69507c28d215e710cf04b03a46ca4a5168958f35688f000b",
+        "version": "45f85017351ab93aa44c905295de1a6fc12e0e7b57fa5ba0c629a54a19c55d19",
+        "signature": "779aa0b7e18487b2e0ffacc5a1885d9bd1978ad6f1532944f704c2d0cd200cd3",
         "affectsGlobalScope": false
       },
       "../src/modules/User/user.module.ts": {
@@ -3017,13 +3017,13 @@
         "affectsGlobalScope": false
       },
       "../src/modules/Transaction/transaction.service.ts": {
-        "version": "7198c6ad3a28f3ff169cf8a176276118128682930392e4f73372619dc4577f2d",
-        "signature": "0432a84a30609e956ee280839c15a0209ffb0b12e8efa50113006a59b11c1ded",
+        "version": "a4fd5aefb823f89f07ea2951d2724cd57b917e5c325b56033953458d2e3eaa36",
+        "signature": "9d2526e47ddf08ef3711fa4ded694f8f2b2bb8cc5f910a6447bfa657337024b7",
         "affectsGlobalScope": false
       },
       "../src/modules/Transaction/transaction.controller.ts": {
-        "version": "565423c41a5fe9b185364215eecd9d57b44bab96e884a03a60f8ec48df83acc0",
-        "signature": "d30b22c42580aa48fdb9505f7b887c45b23e3f42981db470e5206f93a97d92bc",
+        "version": "72aaa9ba4c557feb247aaee5be6d83a4d41002cf7e145cd6add251a5ed07dbdb",
+        "signature": "defa2fbfdeedc8d5e4da046b8550da52903a0c25b341111f11352fcd6213d6ac",
         "affectsGlobalScope": false
       },
       "../src/modules/Transaction/transaction.module.ts": {
@@ -3217,7 +3217,7 @@
         "affectsGlobalScope": false
       },
       "../src/main.ts": {
-        "version": "e25d9bd8f80b6ffbcc8826ed1b407e747e4fbe346c5bab62cbe5837da4eeb189",
+        "version": "0aecf18820c0bfd6e8612a64c986617b7f4e76d9865868161eb495794f84b940",
         "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
         "affectsGlobalScope": false
       },
@@ -8653,7 +8653,6 @@
         "../node_modules/@types/passport-jwt/index.d.ts"
       ],
       "../src/modules/Transaction/transaction.controller.ts": [
-        "../src/modules/Transaction/transaction.entity.ts",
         "../src/modules/Transaction/transaction.service.ts"
       ],
       "../src/modules/Transaction/transaction.entity.ts": [

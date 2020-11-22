@@ -80,7 +80,6 @@ const Signup = () => {
                         helperText={errors.email?.message}
                     />
                     <TextField
-                        autoFocus
                         fullWidth
                         inputRef={register}
                         margin="dense"
@@ -93,7 +92,6 @@ const Signup = () => {
                         helperText={errors.fullName?.message}
                     />
                     <TextField
-                        autoFocus
                         fullWidth
                         inputRef={register}
                         margin="dense"
@@ -106,7 +104,6 @@ const Signup = () => {
                         helperText={errors.password?.message}
                     />
                     <TextField
-                        autoFocus
                         fullWidth
                         inputRef={register}
                         margin="dense"

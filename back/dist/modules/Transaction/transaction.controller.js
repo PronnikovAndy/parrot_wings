@@ -27,8 +27,11 @@ let TransactionController = class TransactionController {
             amount: req.body.amount
         });
     }
-    async getAll(req) {
-        return await this.transactionService.findAllUserTransaction(req.user.id);
+    async getUserTransactions(req) {
+        return await this.transactionService.findAllUserTransaction({
+            id: req.user.id,
+            sort: req.query.field ? { field: req.query.field, order: req.query.order.toUpperCase() } : undefined
+        });
     }
 };
 __decorate([
@@ -46,7 +49,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], TransactionController.prototype, "getAll", null);
+], TransactionController.prototype, "getUserTransactions", null);
 TransactionController = __decorate([
     common_1.Controller('transaction'),
     __metadata("design:paramtypes", [transaction_service_1.TransactionService])

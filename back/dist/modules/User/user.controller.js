@@ -20,30 +20,46 @@ let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
     }
-    async getAll() {
-        return await this.userService.findAll();
+    async getAll(req) {
+        return await this.userService.findAll(req.user.id);
     }
-    async getAllTransaction(req) {
+    async getProfile(req) {
+        const { fullName, balance } = await this.userService.findOne(req.user.id);
+        return {
+            fullName,
+            balance
+        };
+    }
+    async getTransactions(req) {
         const user = await this.userService.findAllUserTransaction(req.user.id);
-        console.log("user", user);
-        return user.transactions;
+        console.log('user', user);
+        return user.transactions || [];
     }
 };
 __decorate([
     common_1.UseGuards(passport_1.AuthGuard('jwt')),
     common_1.Get(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], UserController.prototype, "getAll", null);
-__decorate([
-    common_1.UseGuards(passport_1.AuthGuard('jwt')),
-    common_1.Get('/transaction'),
     __param(0, common_1.Request()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], UserController.prototype, "getAllTransaction", null);
+], UserController.prototype, "getAll", null);
+__decorate([
+    common_1.UseGuards(passport_1.AuthGuard('jwt')),
+    common_1.Get('profile'),
+    __param(0, common_1.Request()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "getProfile", null);
+__decorate([
+    common_1.UseGuards(passport_1.AuthGuard('jwt')),
+    common_1.Get('transaction'),
+    __param(0, common_1.Request()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "getTransactions", null);
 UserController = __decorate([
     common_1.Controller('user'),
     __metadata("design:paramtypes", [user_service_1.UserService])

@@ -8,19 +8,21 @@ import {SigninDto, SignupDto} from "./dto/auth.dto";
 export class AuthService {
     constructor(
         private userService: UserService,
-        private  jwtService: JwtService
+        private jwtService: JwtService
     ) {}
 
     async validateUser(signinDto: SigninDto): Promise<any> {
-        const {password, ...user} = await this.userService.findOneByEmail(signinDto.email);
+        const user = await this.userService.findOneByEmail(signinDto.email);
 
         if(!user) return 'Invalid credentials';
+
+        const { password, ...result } = user;
 
         const match = await bcryptjs.compare(signinDto.password, password);
 
         if(!match) return 'Invalid credentials';
 
-        return user;
+        return result;
     }
 
     async signin(signinDto: SigninDto) {

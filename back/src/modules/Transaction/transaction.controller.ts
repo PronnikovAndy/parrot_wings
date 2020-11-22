@@ -22,7 +22,10 @@ export class TransactionController {
 
     @UseGuards(AuthGuard('jwt'))
     @Get()
-    async getAll(@Request() req): Promise<Transaction[]> {
-        return await this.transactionService.findAllUserTransaction(req.user.id);
+    async getUserTransactions(@Request() req): Promise<any> {
+        return await this.transactionService.findAllUserTransaction({
+            id: req.user.id,
+            sort: req.query.field ? { field: req.query.field, order: req.query.order.toUpperCase() } : undefined
+        });
     }
 }

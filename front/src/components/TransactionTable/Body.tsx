@@ -1,12 +1,12 @@
 import React, {FC} from 'react';
-import {TableBody, TableCell, TableRow, Typography} from "@material-ui/core";
+import {TableBody, TableCell, TableRow} from "@material-ui/core";
 
 interface Transaction {
     id: string;
     name: string;
     amount: number;
-    balance: number;
-    date: Date;
+    resultingBalance: number;
+    createdAt: Date;
 }
 
 interface Props {
@@ -14,11 +14,12 @@ interface Props {
 }
 
 const Body: FC<Props> = ({transactions}) => {
-    console.log("transactions", transactions);
     return (
         <TableBody>
             {!transactions || !transactions.length ? (
-                <Typography>No data</Typography>
+                <TableRow>
+                    <TableCell>No data</TableCell>
+                </TableRow>
             ) : (
                 transactions.map(transaction => (
                     <TableRow
@@ -27,8 +28,8 @@ const Body: FC<Props> = ({transactions}) => {
                     >
                         <TableCell>{transaction.name}</TableCell>
                         <TableCell align="right">{transaction.amount}</TableCell>
-                        <TableCell align="right">{transaction.balance}</TableCell>
-                        <TableCell align="right">{transaction.date.toLocaleString()}</TableCell>
+                        <TableCell align="right">{transaction.resultingBalance}</TableCell>
+                        <TableCell align="right">{transaction.createdAt.toLocaleString()}</TableCell>
                     </TableRow>
                 ))
             )}

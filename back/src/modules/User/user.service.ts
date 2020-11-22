@@ -1,6 +1,6 @@
 import {Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
-import {Repository} from 'typeorm';
+import {Not, Repository} from 'typeorm';
 import {User} from './user.entity';
 import {SignupDto} from "../Auth/dto/auth.dto";
 
@@ -22,8 +22,10 @@ export class UserService {
         return this.userRepository.save(user);
     }
 
-    findAll(): Promise<User[]> {
-        return this.userRepository.find();
+    findAll(id: string): Promise<User[]> {
+        return this.userRepository.find({
+            where: { id: Not(id) }
+        });
     }
 
     findOneByEmail(email: string): Promise<User> {
@@ -37,9 +39,8 @@ export class UserService {
     findAllUserTransaction(id: string, sort?: { field: string, order: 'ASC' | 'DESC' }, filter?: { field: string, value: any }): Promise<User> {
         const query = this.userRepository
             .createQueryBuilder('user')
-            .leftJoinAndSelect('user.transactions', 'transaction')
-
-            // .orderBy('transactions.createdAt')
+            .leftJoinAndSelect('user.transactions', 'transactions')
+            .where('user.id = :id', { id })
 
         if (sort) {
             query

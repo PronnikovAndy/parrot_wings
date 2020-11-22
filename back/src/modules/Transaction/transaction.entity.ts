@@ -5,7 +5,8 @@ import {
     PrimaryGeneratedColumn,
     CreateDateColumn,
     UpdateDateColumn,
-    DeleteDateColumn, ManyToMany, JoinTable
+    DeleteDateColumn,
+    ManyToOne
 } from 'typeorm';
 import {User} from "../User/user.entity";
 
@@ -15,13 +16,16 @@ export class Transaction {
     id: string;
 
     @Column()
+    name: string;
+
+    @Column()
     amount: number;
 
-    @ManyToMany(() => User, user => user.transactions, {
-        cascade: true
-    })
-    @JoinTable()
-    users: User[];
+    @Column()
+    resultingBalance: number;
+
+    @ManyToOne(() => User, user => user.transactions)
+    user: User;
 
     @CreateDateColumn()
     createdAt: Date;

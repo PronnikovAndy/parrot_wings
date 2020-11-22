@@ -12,8 +12,8 @@ interface Props {
 const headCells = [
     {id: 'name', numeric: false, disablePadding: true, label: 'Correspondent name'},
     {id: 'amount', numeric: true, disablePadding: false, label: 'Amount'},
-    {id: 'balance', numeric: true, disablePadding: false, label: 'Resulting balance'},
-    {id: 'date', numeric: true, disablePadding: false, label: 'Date'}
+    {id: 'resultingBalance', numeric: true, disablePadding: false, label: 'Resulting balance'},
+    {id: 'createdAt', numeric: true, disablePadding: false, label: 'Date'}
 ];
 
 const Head: FC<Props> = (props) => {

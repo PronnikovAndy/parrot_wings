@@ -29,8 +29,10 @@ let UserService = class UserService {
         user.balance = 500;
         return this.userRepository.save(user);
     }
-    findAll() {
-        return this.userRepository.find();
+    findAll(id) {
+        return this.userRepository.find({
+            where: { id: typeorm_2.Not(id) }
+        });
     }
     findOneByEmail(email) {
         return this.userRepository.findOne({ email });
@@ -41,7 +43,8 @@ let UserService = class UserService {
     findAllUserTransaction(id, sort, filter) {
         const query = this.userRepository
             .createQueryBuilder('user')
-            .leftJoinAndSelect('user.transactions', 'transaction');
+            .leftJoinAndSelect('user.transactions', 'transactions')
+            .where('user.id = :id', { id });
         if (sort) {
             query
                 .orderBy(`transactions.${sort.field}`, sort.order);

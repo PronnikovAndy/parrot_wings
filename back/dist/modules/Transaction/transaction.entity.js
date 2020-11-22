@@ -20,15 +20,20 @@ __decorate([
 ], Transaction.prototype, "id", void 0);
 __decorate([
     typeorm_1.Column(),
+    __metadata("design:type", String)
+], Transaction.prototype, "name", void 0);
+__decorate([
+    typeorm_1.Column(),
     __metadata("design:type", Number)
 ], Transaction.prototype, "amount", void 0);
 __decorate([
-    typeorm_1.ManyToMany(() => user_entity_1.User, user => user.transactions, {
-        cascade: true
-    }),
-    typeorm_1.JoinTable(),
-    __metadata("design:type", Array)
-], Transaction.prototype, "users", void 0);
+    typeorm_1.Column(),
+    __metadata("design:type", Number)
+], Transaction.prototype, "resultingBalance", void 0);
+__decorate([
+    typeorm_1.ManyToOne(() => user_entity_1.User, user => user.transactions),
+    __metadata("design:type", user_entity_1.User)
+], Transaction.prototype, "user", void 0);
 __decorate([
     typeorm_1.CreateDateColumn(),
     __metadata("design:type", Date)

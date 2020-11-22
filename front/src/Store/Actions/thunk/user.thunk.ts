@@ -13,11 +13,17 @@ export const fetchUserInfo = () => async (dispatch: Dispatch) => {
     }
 }
 
-export const fetchUserTransactions = () => async (dispatch: Dispatch) => {
+export const fetchUserTransactions = ({ order, field}: { order: 'asc' | 'desc', field: string }) => async (dispatch: Dispatch) => {
     dispatch(getUserTransactions.request());
 
     try {
-        const response = await Axios.get('/transaction');
+        const response = await Axios.get('/transaction',
+            {
+                params: {
+                    order,
+                    field
+                }
+            });
         dispatch(getUserTransactions.success(response.data));
     } catch (error) {
         dispatch(getUserTransactions.failure(error.message));

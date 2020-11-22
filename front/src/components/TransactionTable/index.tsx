@@ -20,6 +20,10 @@ const useStyles = makeStyles((theme: Theme) =>
         table: {
             minWidth: 750,
         },
+        toolbar: {
+          display: 'flex',
+          justifyContent: 'space-between'
+        },
         visuallyHidden: {
             border: 0,
             clip: 'rect(0 0 0 0)',
@@ -54,7 +58,7 @@ const TransactionTable = () => {
 
     const classes = useStyles();
     const [order, setOrder] = React.useState<Order>('asc');
-    const [orderBy, setOrderBy] = React.useState<keyof Data>('name');
+    const [field, setField] = React.useState<keyof Data>('name');
 
     const [openCreate, setOpenCreate] = useState(false);
     const handleClose = useCallback(() => {
@@ -65,9 +69,9 @@ const TransactionTable = () => {
     }, [setOpenCreate]);
 
     const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof Data) => {
-        const isAsc = orderBy === property && order === 'asc';
+        const isAsc = field === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
-        setOrderBy(property);
+        setField(property);
     };
 
     useEffect(() => {
@@ -75,8 +79,8 @@ const TransactionTable = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        dispatch(fetchUserTransactions());
-    }, [dispatch]);
+        dispatch(fetchUserTransactions({ order, field }));
+    }, [dispatch, order, field]);
 
     if (!user) {
         return null;
@@ -85,7 +89,7 @@ const TransactionTable = () => {
     return (
         <>
             <Paper>
-                <Toolbar>
+                <Toolbar className={classes.toolbar}>
                     <Typography variant="h5">{user.fullName} - ${user.balance}</Typography>
                     <Button onClick={handleOpen}>Send money</Button>
                 </Toolbar>
@@ -94,7 +98,7 @@ const TransactionTable = () => {
                         <Head
                             classes={classes}
                             order={order}
-                            orderBy={orderBy}
+                            orderBy={field}
                             onRequestSort={handleRequestSort}
                         />
                         <Body

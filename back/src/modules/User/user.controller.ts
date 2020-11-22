@@ -12,17 +12,28 @@ export class UserController {
 
     @UseGuards(AuthGuard('jwt'))
     @Get()
-    async getAll(): Promise<User[]> {
-        return await this.userService.findAll();
+    async getAll(@Request() req): Promise<User[]> {
+        return await this.userService.findAll(req.user.id);
     }
 
     @UseGuards(AuthGuard('jwt'))
-    @Get('/transaction')
-    async getAllTransaction(@Request() req): Promise<Transaction[]> {
+    @Get('profile')
+    async getProfile(@Request() req): Promise<{ fullName: string, balance: number }> {
+        const { fullName, balance } = await this.userService.findOne(req.user.id);
+
+        return {
+            fullName,
+            balance
+        }
+    }
+
+    @UseGuards(AuthGuard('jwt'))
+    @Get('transaction')
+    async getTransactions(@Request() req): Promise<Transaction[]> {
         const user = await this.userService.findAllUserTransaction(req.user.id);
 
-        console.log("user", user);
+        console.log('user', user);
 
-        return user.transactions;
+        return user.transactions || [];
     }
 }

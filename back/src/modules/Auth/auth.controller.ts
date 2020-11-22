@@ -18,4 +18,11 @@ export class AuthController {
 
         return user;
     }
+
+    @Post('logout')
+    logout() {
+        return {
+            success: true
+        }
+    }
 }

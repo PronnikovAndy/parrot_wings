@@ -1,6 +1,7 @@
 import {Dispatch} from "redux";
-import {signin, signup} from "../index";
+import {logout, signin, signup} from "../index";
 import {Axios} from "../../../Core";
+import {log} from "util";
 
 interface Signin {
     email: string;
@@ -33,5 +34,19 @@ export const fetchSignup = (data: Signup) => async (dispatch: Dispatch) => {
         dispatch(signup.success(response.data));
     } catch (e) {
         dispatch(signup.failure(e.message));
+    }
+}
+
+export const fetchLogout = () => async (dispatch: Dispatch) => {
+    dispatch(logout.request());
+
+    try {
+        const response = await Axios.post('/auth/logout');
+        if(response.data.success) {
+            dispatch(logout.success());
+            localStorage.removeItem('access_token');
+        }
+    } catch (e) {
+        dispatch(logout.failure(e.message));
     }
 }

@@ -16,8 +16,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchTransaction, fetchUserList} from "../../Store/Actions/thunk/user.thunk";
 import * as selectors from '../../Store/Selectors';
 
-const CreateTransactionScheam = object().shape({
-    name: string().required(),
+const CreateTransactionSchema = object().shape({
     amount: string().required(),
     recipientId: string().required()
 });
@@ -37,11 +36,14 @@ const CreateTransaction: FC<Props> = ({ open, handleClose, classes }) => {
     }, [dispatch]);
 
     const {register, handleSubmit, errors, control} = useForm({
-        resolver: yupResolver(CreateTransactionScheam)
+        resolver: yupResolver(CreateTransactionSchema)
     });
 
     const onSubmit = useCallback((data) => {
-        dispatch(fetchTransaction(data));
+        dispatch(fetchTransaction({
+            ...data,
+            amount: parseInt(data.amount)
+        }));
         handleClose();
     }, [dispatch, handleClose]);
 
@@ -55,19 +57,6 @@ const CreateTransaction: FC<Props> = ({ open, handleClose, classes }) => {
                     </IconButton>
                 </DialogTitle>
                 <DialogContent>
-                    <TextField
-                        autoFocus
-                        fullWidth
-                        inputRef={register}
-                        margin="dense"
-                        id="name"
-                        name="name"
-                        label="Name"
-                        type="text"
-                        variant="outlined"
-                        error={errors.name ? true : false}
-                        helperText={errors.name?.message}
-                    />
                     <TextField
                         autoFocus
                         fullWidth
@@ -93,11 +82,9 @@ const CreateTransaction: FC<Props> = ({ open, handleClose, classes }) => {
                                 error={errors.user ? true : false}
                                 helperText={errors.user?.message}
                             >
-                                {!userList || !userList.length ? (
-                                    null
-                                ) : (
+                                {!userList || !userList.length ? null : (
                                     userList.map((user: any) => (
-                                        <MenuItem value={user.id}>{user.fullName}</MenuItem>
+                                        <MenuItem key={user.id} value={user.id}>{user.fullName}</MenuItem>
                                     ))
                                 )}
                             </TextField>

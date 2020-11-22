@@ -8,9 +8,10 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import {ButtonGroup} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
-import {signin, toggleSigninForm, toggleSignupForm} from "../../Store/Actions";
+import {toggleSigninForm, toggleSignupForm} from "../../Store/Actions";
 import * as selectors from "../../Store/Selectors";
 import {fetchUserInfo} from "../../Store/Actions/thunk/user.thunk";
+import {fetchLogout} from "../../Store/Actions/thunk/auth.thunk";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -39,8 +40,7 @@ const Menu = () => {
     }, [dispatch]);
 
     const handleLogoutClick = useCallback(() => {
-        dispatch(signin.success(null));
-        localStorage.removeItem("access_token");
+        dispatch(fetchLogout());
     }, [dispatch]);
 
     useEffect(() => {

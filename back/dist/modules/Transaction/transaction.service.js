@@ -24,24 +24,41 @@ let TransactionService = class TransactionService {
         this.userService = userService;
     }
     async create(transactionData) {
-        const transaction = new transaction_entity_1.Transaction();
+        console.log("transactionData", transactionData);
         const sender = await this.userService.changeBalance(transactionData.amount, transactionData.senderId, 'debit');
         const recipient = await this.userService.changeBalance(transactionData.amount, transactionData.recipientId, 'credit');
-        console.log("sender", sender);
-        console.log("recipient", recipient);
         if (!sender || !recipient) {
             return 'Invalid user';
         }
-        transaction.users = [sender, recipient];
-        transaction.amount = transactionData.amount;
-        return this.transactionRepository.save(transaction);
+        const name = `From ${sender.fullName} to ${recipient.fullName}`;
+        const senderTransaction = new transaction_entity_1.Transaction();
+        senderTransaction.name = name;
+        senderTransaction.amount = -transactionData.amount;
+        senderTransaction.user = sender;
+        senderTransaction.resultingBalance = sender.balance;
+        const recipientTransaction = new transaction_entity_1.Transaction();
+        recipientTransaction.name = name;
+        recipientTransaction.amount = transactionData.amount;
+        recipientTransaction.user = recipient;
+        recipientTransaction.resultingBalance = recipient.balance;
+        await this.transactionRepository.save([senderTransaction, recipientTransaction]);
+        return {
+            success: true
+        };
     }
-    findAllUserTransaction(id, sort, filter) {
+    findAllUserTransaction({ id, sort = { field: 'createdAt', order: 'DESC' }, filter }) {
         const query = this.transactionRepository
             .createQueryBuilder('transaction')
-            .leftJoinAndSelect('transaction.users', 'users')
-            .where("users.id = :id", { id })
-            .orderBy('transaction.createdAt');
+            .leftJoinAndSelect('transaction.user', 'user')
+            .where("user.id = :id", { id })
+            .orderBy('transaction.createdAt')
+            .select([
+            'transaction.id',
+            'transaction.name',
+            'transaction.resultingBalance',
+            'transaction.amount',
+            'transaction.createdAt'
+        ]);
         if (sort) {
             query
                 .orderBy(`transaction.${sort.field}`, sort.order);

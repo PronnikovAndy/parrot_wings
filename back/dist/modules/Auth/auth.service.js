@@ -31,13 +31,14 @@ let AuthService = class AuthService {
         this.jwtService = jwtService;
     }
     async validateUser(signinDto) {
-        const _a = await this.userService.findOneByEmail(signinDto.email), { password } = _a, user = __rest(_a, ["password"]);
+        const user = await this.userService.findOneByEmail(signinDto.email);
         if (!user)
             return 'Invalid credentials';
+        const { password } = user, result = __rest(user, ["password"]);
         const match = await bcryptjs.compare(signinDto.password, password);
         if (!match)
             return 'Invalid credentials';
-        return user;
+        return result;
     }
     async signin(signinDto) {
         const payload = await this.validateUser(signinDto);

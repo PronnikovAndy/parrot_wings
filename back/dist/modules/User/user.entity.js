@@ -35,7 +35,7 @@ __decorate([
     __metadata("design:type", Number)
 ], User.prototype, "balance", void 0);
 __decorate([
-    typeorm_1.ManyToOne(() => transaction_entity_1.Transaction, transaction => transaction.users),
+    typeorm_1.OneToMany(() => transaction_entity_1.Transaction, transaction => transaction.user),
     __metadata("design:type", Array)
 ], User.prototype, "transactions", void 0);
 __decorate([

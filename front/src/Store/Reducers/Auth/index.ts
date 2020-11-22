@@ -60,6 +60,31 @@ const AuthReducer = (state = defaultState, action: Action): AuthState => {
             }
         }
 
+        case getType(actions.logout.request): {
+            return {
+                ...state,
+                loading: true
+            }
+        }
+
+        case getType(actions.logout.success): {
+            return {
+                ...state,
+                loading: false,
+                token: null,
+                error: null
+            }
+        }
+
+        case getType(actions.logout.failure): {
+            return {
+                ...state,
+                loading: false,
+                token: null,
+                error: action.payload
+            }
+        }
+
         default:
             return state;
     };

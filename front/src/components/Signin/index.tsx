@@ -80,7 +80,6 @@ const Signin = () => {
                         helperText={errors.email?.message}
                     />
                     <TextField
-                        autoFocus
                         fullWidth
                         inputRef={register}
                         margin="dense"

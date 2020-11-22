@@ -3,11 +3,10 @@ import {
     Entity,
     Column,
     PrimaryGeneratedColumn,
-    ManyToOne,
     CreateDateColumn,
     UpdateDateColumn,
     DeleteDateColumn,
-    JoinTable
+    OneToMany
 } from 'typeorm';
 import {Transaction} from "../Transaction/transaction.entity";
 
@@ -28,7 +27,7 @@ export class User {
     @Column()
     balance: number;
 
-    @ManyToOne(() => Transaction, transaction => transaction.users)
+    @OneToMany(() => Transaction, transaction => transaction.user)
     transactions: Transaction[];
 
     @CreateDateColumn()

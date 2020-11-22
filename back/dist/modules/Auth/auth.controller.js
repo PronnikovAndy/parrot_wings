@@ -27,6 +27,11 @@ let AuthController = class AuthController {
         const user = this.authService.signup(signupDto);
         return user;
     }
+    logout() {
+        return {
+            success: true
+        };
+    }
 };
 __decorate([
     common_1.Post('signin'),
@@ -42,6 +47,12 @@ __decorate([
     __metadata("design:paramtypes", [auth_dto_1.SignupDto]),
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "signup", null);
+__decorate([
+    common_1.Post('logout'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], AuthController.prototype, "logout", null);
 AuthController = __decorate([
     common_1.Controller('auth'),
     __metadata("design:paramtypes", [auth_service_1.AuthService])

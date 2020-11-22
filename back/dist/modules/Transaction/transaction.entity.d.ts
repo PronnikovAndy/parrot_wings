@@ -1,8 +1,10 @@
 import { User } from "../User/user.entity";
 export declare class Transaction {
     id: string;
+    name: string;
     amount: number;
-    users: User[];
+    resultingBalance: number;
+    user: User;
     createdAt: Date;
     updatedAt: Date;
     deletedAt: Date;

@@ -17,6 +17,12 @@ export const signup = createAsyncAction(
     'SIGNUP_FAILURE'
 )<undefined, string, string>();
 
+export const logout = createAsyncAction(
+    'LOGOUT_REQUEST',
+    'LOGOUT_SUCCESS',
+    'LOGOUT_FAILURE'
+)<undefined, undefined, string>();
+
 export const getUserInfo = createAsyncAction(
     'GET_USER_INFO_REQUEST',
     'GET_USER_INFO_SUCCESS',
