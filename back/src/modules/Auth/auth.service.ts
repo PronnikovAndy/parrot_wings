@@ -1,7 +1,7 @@
 import * as bcryptjs from 'bcryptjs';
-import {Injectable} from "@nestjs/common";
+import {HttpException, Injectable} from "@nestjs/common";
 import {UserService} from "../User/user.service";
-import { JwtService } from "@nestjs/jwt";
+import {JwtService} from "@nestjs/jwt";
 import {SigninDto, SignupDto} from "./dto/auth.dto";
 
 @Injectable()
@@ -9,46 +9,64 @@ export class AuthService {
     constructor(
         private userService: UserService,
         private jwtService: JwtService
-    ) {}
+    ) {
+    }
 
     async validateUser(signinDto: SigninDto): Promise<any> {
-        const user = await this.userService.findOneByEmail(signinDto.email);
+        try {
+            const user = await this.userService.findOneByEmail(signinDto.email);
 
-        if(!user) return 'Invalid credentials';
+            if (!user) return 'Invalid credentials';
 
-        const { password, ...result } = user;
+            const {password, ...result} = user;
 
-        const match = await bcryptjs.compare(signinDto.password, password);
+            const match = await bcryptjs.compare(signinDto.password, password);
 
-        if(!match) return 'Invalid credentials';
+            if (!match) return 'Invalid credentials';
 
-        return result;
+            return result;
+        } catch (error) {
+            console.log('error', error.message);
+            throw new HttpException(error.message, 400);
+        }
     }
 
     async signin(signinDto: SigninDto) {
-        const payload = await this.validateUser(signinDto);
+        try {
+            const payload = await this.validateUser(signinDto);
 
-        console.log("payload", payload);
+            console.log("payload", payload);
 
-        return {
-            access_token: this.jwtService.sign(payload)
+            return {
+                access_token: this.jwtService.sign(payload)
+            }
+        } catch (error) {
+            console.log('error', error.message);
+            throw new HttpException(error.message, 400);
         }
+
     }
 
     async signup(signupDto: SignupDto) {
-        const user = await this.userService.findOneByEmail(signupDto.email);
+        try {
+            const user = await this.userService.findOneByEmail(signupDto.email);
 
-        if(user) {
-            return 'User already exists';
+            if (user) {
+                return 'User already exists';
+            }
+
+            const passwordHash = await bcryptjs.hash(signupDto.password, 10);
+
+            const {password, ...newUser} = await this.userService.create({
+                ...signupDto,
+                password: passwordHash
+            });
+
+            return newUser;
+        } catch (error) {
+            console.log('error', error.message);
+            throw new HttpException(error.message, 400);
         }
 
-        const passwordHash = await bcryptjs.hash(signupDto.password, 10);
-
-        const {password, ...newUser} = await this.userService.create({
-            ...signupDto,
-            password: passwordHash
-        });
-
-        return newUser;
     }
 }

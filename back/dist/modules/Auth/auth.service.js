@@ -31,30 +31,48 @@ let AuthService = class AuthService {
         this.jwtService = jwtService;
     }
     async validateUser(signinDto) {
-        const user = await this.userService.findOneByEmail(signinDto.email);
-        if (!user)
-            return 'Invalid credentials';
-        const { password } = user, result = __rest(user, ["password"]);
-        const match = await bcryptjs.compare(signinDto.password, password);
-        if (!match)
-            return 'Invalid credentials';
-        return result;
+        try {
+            const user = await this.userService.findOneByEmail(signinDto.email);
+            if (!user)
+                return 'Invalid credentials';
+            const { password } = user, result = __rest(user, ["password"]);
+            const match = await bcryptjs.compare(signinDto.password, password);
+            if (!match)
+                return 'Invalid credentials';
+            return result;
+        }
+        catch (error) {
+            console.log('error', error.message);
+            throw new common_1.HttpException(error.message, 400);
+        }
     }
     async signin(signinDto) {
-        const payload = await this.validateUser(signinDto);
-        console.log("payload", payload);
-        return {
-            access_token: this.jwtService.sign(payload)
-        };
+        try {
+            const payload = await this.validateUser(signinDto);
+            console.log("payload", payload);
+            return {
+                access_token: this.jwtService.sign(payload)
+            };
+        }
+        catch (error) {
+            console.log('error', error.message);
+            throw new common_1.HttpException(error.message, 400);
+        }
     }
     async signup(signupDto) {
-        const user = await this.userService.findOneByEmail(signupDto.email);
-        if (user) {
-            return 'User already exists';
+        try {
+            const user = await this.userService.findOneByEmail(signupDto.email);
+            if (user) {
+                return 'User already exists';
+            }
+            const passwordHash = await bcryptjs.hash(signupDto.password, 10);
+            const _a = await this.userService.create(Object.assign(Object.assign({}, signupDto), { password: passwordHash })), { password } = _a, newUser = __rest(_a, ["password"]);
+            return newUser;
         }
-        const passwordHash = await bcryptjs.hash(signupDto.password, 10);
-        const _a = await this.userService.create(Object.assign(Object.assign({}, signupDto), { password: passwordHash })), { password } = _a, newUser = __rest(_a, ["password"]);
-        return newUser;
+        catch (error) {
+            console.log('error', error.message);
+            throw new common_1.HttpException(error.message, 400);
+        }
     }
 };
 AuthService = __decorate([

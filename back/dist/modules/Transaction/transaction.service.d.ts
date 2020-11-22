@@ -20,5 +20,4 @@ export declare class TransactionService {
             value: any;
         };
     }): Promise<Transaction[]>;
-    findOne(id: string): Promise<Transaction>;
 }

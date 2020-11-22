@@ -22,46 +22,58 @@ let UserService = class UserService {
         this.userRepository = userRepository;
     }
     create(signupDto) {
-        const user = new user_entity_1.User();
-        user.email = signupDto.email;
-        user.fullName = signupDto.fullName;
-        user.password = signupDto.password;
-        user.balance = 500;
-        return this.userRepository.save(user);
+        try {
+            const user = new user_entity_1.User();
+            user.email = signupDto.email;
+            user.fullName = signupDto.fullName;
+            user.password = signupDto.password;
+            user.balance = 500;
+            return this.userRepository.save(user);
+        }
+        catch (error) {
+            console.log('error', error.message);
+            throw new common_1.HttpException(error.message, 400);
+        }
     }
     findAll(id) {
-        return this.userRepository.find({
-            where: { id: typeorm_2.Not(id) }
-        });
+        try {
+            return this.userRepository.find({
+                where: { id: typeorm_2.Not(id) }
+            });
+        }
+        catch (error) {
+            console.log('error', error.message);
+            throw new common_1.HttpException(error.message, 400);
+        }
     }
     findOneByEmail(email) {
-        return this.userRepository.findOne({ email });
+        try {
+            return this.userRepository.findOne({ email });
+        }
+        catch (error) {
+            console.log('error', error.message);
+            throw new common_1.HttpException(error.message, 400);
+        }
     }
     findOne(id) {
-        return this.userRepository.findOne(id);
-    }
-    findAllUserTransaction(id, sort, filter) {
-        const query = this.userRepository
-            .createQueryBuilder('user')
-            .leftJoinAndSelect('user.transactions', 'transactions')
-            .where('user.id = :id', { id });
-        if (sort) {
-            query
-                .orderBy(`transactions.${sort.field}`, sort.order);
+        try {
+            return this.userRepository.findOne(id);
         }
-        if (filter) {
-            query
-                .where(`transactions.${filter.field}`, filter.value);
+        catch (error) {
+            console.log('error', error.message);
+            throw new common_1.HttpException(error.message, 400);
         }
-        return query.getOne();
     }
     async changeBalance(amount, userId, type) {
-        const user = await this.userRepository.findOne(userId);
-        user.balance = type === 'credit' ? user.balance + amount : user.balance - amount;
-        return await this.userRepository.save(user);
-    }
-    async remove(id) {
-        await this.userRepository.delete(id);
+        try {
+            const user = await this.userRepository.findOne(userId);
+            user.balance = type === 'credit' ? user.balance + amount : user.balance - amount;
+            return await this.userRepository.save(user);
+        }
+        catch (error) {
+            console.log('error', error.message);
+            throw new common_1.HttpException(error.message, 400);
+        }
     }
 };
 UserService = __decorate([

@@ -2602,8 +2602,8 @@
         "affectsGlobalScope": false
       },
       "../src/modules/User/user.service.ts": {
-        "version": "e09cdadac487c3420a2e43c7073940882beae23ae30d0359308cc3eddea8e47c",
-        "signature": "dc8a249734835b4a3eab865c83b3031eb844fd268202bc4900fcfdc16280cc88",
+        "version": "af47d7ad07c283f55beeeca797068d9a8fc84d7e74ab3f50055a2fe655c41703",
+        "signature": "173537e56dab37c6d8fba4bc978bf6c4259cc5b945e996ad14042714fe3bc365",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/node/globals.d.ts": {
@@ -2877,7 +2877,7 @@
         "affectsGlobalScope": false
       },
       "../src/modules/Auth/auth.service.ts": {
-        "version": "d3b316bd3ae1a49b03f8fea995da846974a91141a21bd3cc936cf9377117584d",
+        "version": "bd9d2b6404b9f138017761c0a5f08801a1c5ed13d61f47c50426ec5cecdbebf0",
         "signature": "3f715f8f5eed74dcccd64de78bf7908b3a5bf0ae6aa2fdb9724985186b7128a0",
         "affectsGlobalScope": false
       },
@@ -2982,8 +2982,8 @@
         "affectsGlobalScope": false
       },
       "../src/modules/User/user.controller.ts": {
-        "version": "45f85017351ab93aa44c905295de1a6fc12e0e7b57fa5ba0c629a54a19c55d19",
-        "signature": "779aa0b7e18487b2e0ffacc5a1885d9bd1978ad6f1532944f704c2d0cd200cd3",
+        "version": "bcc5b4263a9d5cf44c960b6e10184f4d52318d16d24b3274c44fa47eeeb2f27e",
+        "signature": "732b86c56a254f5bff49bd46066357b363e409633dcd8e7d4f58f9bfa8d17b39",
         "affectsGlobalScope": false
       },
       "../src/modules/User/user.module.ts": {
@@ -3017,8 +3017,8 @@
         "affectsGlobalScope": false
       },
       "../src/modules/Transaction/transaction.service.ts": {
-        "version": "a4fd5aefb823f89f07ea2951d2724cd57b917e5c325b56033953458d2e3eaa36",
-        "signature": "9d2526e47ddf08ef3711fa4ded694f8f2b2bb8cc5f910a6447bfa657337024b7",
+        "version": "0785f43c0347cf6aee3d18011ad9237264168c7d24eae842e595d141c4fb24ce",
+        "signature": "8de964c5211de5780ba30781000752cd0dcff7dcd5ddf7230f26fbcdbcca3cf5",
         "affectsGlobalScope": false
       },
       "../src/modules/Transaction/transaction.controller.ts": {
@@ -8665,7 +8665,6 @@
         "../src/modules/User/user.service.ts"
       ],
       "../src/modules/User/user.controller.ts": [
-        "../src/modules/Transaction/transaction.entity.ts",
         "../src/modules/User/user.entity.ts",
         "../src/modules/User/user.service.ts"
       ],

@@ -26,14 +26,4 @@ export class UserController {
             balance
         }
     }
-
-    @UseGuards(AuthGuard('jwt'))
-    @Get('transaction')
-    async getTransactions(@Request() req): Promise<Transaction[]> {
-        const user = await this.userService.findAllUserTransaction(req.user.id);
-
-        console.log('user', user);
-
-        return user.transactions || [];
-    }
 }

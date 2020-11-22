@@ -1,4 +1,4 @@
-import {Injectable} from '@nestjs/common';
+import {HttpException, Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
 import {Not, Repository} from 'typeorm';
 import {User} from './user.entity';
@@ -13,57 +13,59 @@ export class UserService {
     }
 
     create(signupDto: SignupDto): Promise<User> {
-        const user = new User();
-        user.email = signupDto.email;
-        user.fullName = signupDto.fullName;
-        user.password = signupDto.password;
-        user.balance = 500;
+        try {
+            const user = new User();
+            user.email = signupDto.email;
+            user.fullName = signupDto.fullName;
+            user.password = signupDto.password;
+            user.balance = 500;
 
-        return this.userRepository.save(user);
+            return this.userRepository.save(user);
+        } catch (error) {
+            console.log('error', error.message);
+            throw new HttpException(error.message, 400);
+        }
     }
 
     findAll(id: string): Promise<User[]> {
-        return this.userRepository.find({
-            where: { id: Not(id) }
-        });
+        try {
+            return this.userRepository.find({
+                where: { id: Not(id) }
+            });
+        } catch (error) {
+            console.log('error', error.message);
+            throw new HttpException(error.message, 400);
+        }
     }
 
     findOneByEmail(email: string): Promise<User> {
-        return this.userRepository.findOne({email});
+        try {
+            return this.userRepository.findOne({email});
+        } catch (error) {
+            console.log('error', error.message);
+            throw new HttpException(error.message, 400);
+        }
     }
 
     findOne(id: string): Promise<User> {
-        return this.userRepository.findOne(id);
-    }
-
-    findAllUserTransaction(id: string, sort?: { field: string, order: 'ASC' | 'DESC' }, filter?: { field: string, value: any }): Promise<User> {
-        const query = this.userRepository
-            .createQueryBuilder('user')
-            .leftJoinAndSelect('user.transactions', 'transactions')
-            .where('user.id = :id', { id })
-
-        if (sort) {
-            query
-                .orderBy(`transactions.${sort.field}`, sort.order)
+        try {
+            return this.userRepository.findOne(id);
+        } catch (error) {
+            console.log('error', error.message);
+            throw new HttpException(error.message, 400);
         }
-
-        if (filter) {
-            query
-                .where(`transactions.${filter.field}`, filter.value)
-        }
-
-        return query.getOne();
     }
 
     async changeBalance(amount: number, userId: string, type: string): Promise<User> {
-        const user = await this.userRepository.findOne(userId);
+        try {
+            const user = await this.userRepository.findOne(userId);
 
-        user.balance = type === 'credit' ? user.balance + amount : user.balance - amount;
+            user.balance = type === 'credit' ? user.balance + amount : user.balance - amount;
 
-        return await this.userRepository.save(user);
-    }
-
-    async remove(id: string): Promise<void> {
-        await this.userRepository.delete(id);
+            return await this.userRepository.save(user);
+        } catch (error) {
+            console.log('error', error.message);
+            throw new HttpException(error.message, 400);
+        }
     }
 }
