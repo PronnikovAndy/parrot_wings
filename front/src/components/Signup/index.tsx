@@ -11,11 +11,10 @@ import {
 } from "@material-ui/core";
 import CloseIcon from '@material-ui/icons/Close';
 import {makeStyles} from "@material-ui/core/styles";
-import {useForm} from "react-hook-form";
-import {yupResolver} from "@hookform/resolvers/yup";
 import {openSignup} from "../../Store/Selectors";
 import {toggleSignupForm} from "../../Store/Actions";
 import {fetchSignup} from "../../Store/Actions/thunk/auth.thunk";
+import {useFormik} from "formik";
 
 const styles = makeStyles((theme: Theme) =>
     createStyles({
@@ -42,8 +41,18 @@ const Signup = () => {
     const classes = styles();
     const dispatch = useDispatch();
 
-    const {register, handleSubmit, errors} = useForm({
-        resolver: yupResolver(SignupScheam)
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            fullName: '',
+            password: '',
+            confirmPassword: ''
+        },
+        validationSchema: SignupScheam,
+        onSubmit: values => {
+            dispatch(fetchSignup(values));
+            dispatch(toggleSignupForm((false)));
+        }
     });
 
     const open = useSelector(openSignup);
@@ -51,14 +60,10 @@ const Signup = () => {
         dispatch(toggleSignupForm(false));
     }, [dispatch]);
 
-    const onSubmit = useCallback((data) => {
-        dispatch(fetchSignup(data));
-        dispatch(toggleSignupForm((false)));
-    }, [dispatch]);
 
     return (
         <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={formik.handleSubmit}>
                 <DialogTitle id="form-dialog-title">
                     Signup
                 </DialogTitle>
@@ -69,51 +74,51 @@ const Signup = () => {
                     <TextField
                         autoFocus
                         fullWidth
-                        inputRef={register}
                         margin="dense"
                         id="email"
                         name="email"
                         label="Email"
                         type="email"
                         variant="outlined"
-                        error={errors.email ? true : false}
-                        helperText={errors.email?.message}
+                        onChange={formik.handleChange}
+                        error={formik.errors.email ? true : false}
+                        helperText={formik.errors.email}
                     />
                     <TextField
                         fullWidth
-                        inputRef={register}
                         margin="dense"
                         id="fullName"
                         name="fullName"
                         label="Full name"
                         type="text"
                         variant="outlined"
-                        error={errors.fullName ? true : false}
-                        helperText={errors.fullName?.message}
+                        onChange={formik.handleChange}
+                        error={formik.errors.fullName ? true : false}
+                        helperText={formik.errors.fullName}
                     />
                     <TextField
                         fullWidth
-                        inputRef={register}
                         margin="dense"
                         id="password"
                         name="password"
                         label="Password"
                         type="password"
                         variant="outlined"
-                        error={errors.password ? true : false}
-                        helperText={errors.password?.message}
+                        onChange={formik.handleChange}
+                        error={formik.errors.password ? true : false}
+                        helperText={formik.errors.password}
                     />
                     <TextField
                         fullWidth
-                        inputRef={register}
                         margin="dense"
                         id="confirmPassword"
                         name="confirmPassword"
                         label="Confirm password"
                         type="password"
                         variant="outlined"
-                        error={errors.confirmPassword ? true : false}
-                        helperText={errors.confirmPassword?.message}
+                        onChange={formik.handleChange}
+                        error={formik.errors.confirmPassword ? true : false}
+                        helperText={formik.errors.confirmPassword}
                     />
                 </DialogContent>
                 <DialogActions>

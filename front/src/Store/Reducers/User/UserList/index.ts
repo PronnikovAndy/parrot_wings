@@ -3,9 +3,14 @@ import {ActionType, getType} from "typesafe-actions";
 
 type Action = ActionType<typeof actions>;
 
+export interface Recipient {
+    id: string;
+    name: string;
+}
+
 export interface UserListState {
     loading: boolean;
-    data: any | null;
+    data: Recipient[] | null;
     error: string | null;
 }
 

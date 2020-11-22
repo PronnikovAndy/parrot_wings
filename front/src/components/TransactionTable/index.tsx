@@ -38,6 +38,12 @@ const useStyles = makeStyles((theme: Theme) =>
         formControl: {
             margin: '10px',
         },
+        closeButton: {
+            position: 'absolute',
+            right: theme.spacing(1),
+            top: theme.spacing(1),
+            color: theme.palette.grey[500],
+        },
     }),
 );
 
@@ -111,6 +117,7 @@ const TransactionTable = () => {
                 classes={classes}
                 open={openCreate}
                 handleClose={handleClose}
+                currentBalance={user.balance}
             />
         </>
     );
