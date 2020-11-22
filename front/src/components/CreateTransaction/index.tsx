@@ -11,7 +11,12 @@ import {
 import CloseIcon from "@material-ui/icons/Close";
 import {object, string, number} from "yup";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchTransaction, fetchUserList} from "../../Store/Actions/thunk/user.thunk";
+import {
+    fetchTransaction,
+    fetchUserInfo,
+    fetchUserList,
+    fetchUserTransactions
+} from "../../Store/Actions/thunk/user.thunk";
 import * as selectors from '../../Store/Selectors';
 import {Autocomplete} from "@material-ui/lab";
 import {Recipient} from "../../Store/Reducers/User/UserList";
@@ -27,9 +32,11 @@ interface Props {
     open: boolean;
     handleClose: () => void;
     currentBalance: number;
+    order: 'asc' | 'desc',
+    field: string;
 }
 
-const CreateTransaction: FC<Props> = ({open, handleClose, classes, currentBalance}) => {
+const CreateTransaction: FC<Props> = ({open, handleClose, classes, currentBalance, order, field}) => {
     const dispatch = useDispatch();
     const userList = useSelector(selectors.userList);
 
@@ -49,13 +56,15 @@ const CreateTransaction: FC<Props> = ({open, handleClose, classes, currentBalanc
             }).required()
         }),
         validateOnChange: false,
-        onSubmit: values => {
+        onSubmit: async values => {
             if (!values.recipient) return;
 
-            dispatch(fetchTransaction({
+            await dispatch(fetchTransaction({
                 recipientId: values.recipient.id,
                 amount: values.amount
             }));
+            dispatch(fetchUserInfo());
+            dispatch(fetchUserTransactions({}));
             handleClose();
         }
     });

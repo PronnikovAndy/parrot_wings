@@ -13,7 +13,7 @@ export const fetchUserInfo = () => async (dispatch: Dispatch) => {
     }
 }
 
-export const fetchUserTransactions = ({ order, field}: { order: 'asc' | 'desc', field: string }) => async (dispatch: Dispatch) => {
+export const fetchUserTransactions = ({ order, field}: { order?: 'asc' | 'desc', field?: string }) => async (dispatch: Dispatch) => {
     dispatch(getUserTransactions.request());
 
     try {

@@ -118,6 +118,8 @@ const TransactionTable = () => {
                 open={openCreate}
                 handleClose={handleClose}
                 currentBalance={user.balance}
+                order={order}
+                field={field}
             />
         </>
     );

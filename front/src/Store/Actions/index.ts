@@ -2,8 +2,8 @@ import {deprecated, createAsyncAction} from "typesafe-actions";
 
 const { createStandardAction } = deprecated;
 
-export const toggleSigninForm = createStandardAction('OPEN_SIGNIN_FORM')<boolean>();
-export const toggleSignupForm = createStandardAction('OPEN_SIGNUP_FORM')<boolean>();
+export const toggleSigninForm = createStandardAction('TOGGLE_SIGNIN_FORM')<boolean>();
+export const toggleSignupForm = createStandardAction('TOGGLE_SIGNUP_FORM')<boolean>();
 
 export const signin = createAsyncAction(
     'SIGNIN_REQUEST',
